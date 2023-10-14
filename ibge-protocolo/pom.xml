@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>puc.bruno</groupId>
+  <artifactId>ibge-protocolo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.0.0</version>
+	</parent>
+  
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+
+  
+  	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency> 
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-test</artifactId>
+	<scope>test</scope>
+</dependency>
+
+<dependency>
+	<groupId>com.h2database</groupId>
+	<artifactId>h2</artifactId>
+	<scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.junit.vintage</groupId>
+    <artifactId>junit-vintage-engine</artifactId>
+    <scope>test</scope>
+</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+
+
+
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-test</artifactId>
+   <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>org.junit.platform</groupId>
+   <artifactId>junit-platform-launcher</artifactId>
+   <version>1.7.1</version>
+   <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>org.junit.jupiter</groupId>
+   <artifactId>junit-jupiter-engine</artifactId>
+   <version>5.7.1</version>
+   <scope>test</scope>
+</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+		  <plugin>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<executions>
+			  <execution>
+				<id>copy-dependencies</id>
+				<phase>package</phase>
+				<goals>
+				  <goal>copy-dependencies</goal>
+				</goals>
+				<configuration>
+				  <outputDirectory>${project.build.directory}/lib</outputDirectory>
+				</configuration>
+			  </execution>
+			</executions>
+		  </plugin>
+		  <plugin>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+			  <archive>
+				<manifest>
+				  <addClasspath>true</addClasspath>
+				  <classpathPrefix>lib/</classpathPrefix>
+				  <mainClass>ibge.protocolo.IBGEProtocoloApplication</mainClass>
+				</manifest>
+			  </archive>
+			</configuration>
+		  </plugin>
+		  <plugin>
+			<artifactId>maven-scm-plugin</artifactId>
+			<version>1.11.2</version>
+			<dependencies>
+			  <dependency>
+				<groupId>com.codicesoftware.plastic.maven</groupId>
+				<artifactId>maven-scm-provider-plasticscm</artifactId>
+				<version>1.8.1</version>
+			  </dependency>
+			</dependencies>
+		  </plugin>
+		  
+		   <plugin>
+         <artifactId>maven-surefire-plugin</artifactId>
+         <version>2.22.2</version>
+      </plugin>
+      <plugin>
+         <groupId>org.jacoco</groupId>
+         <artifactId>jacoco-maven-plugin</artifactId>
+         <version>0.8.4</version>
+         <executions>
+            <execution>
+               <goals>
+                  <goal>prepare-agent</goal>
+               </goals>
+            </execution>
+            <execution>
+               <id>report</id>
+               <phase>prepare-package</phase>
+               <goals>
+                  <goal>report</goal>
+               </goals>
+            </execution>
+         </executions>
+      </plugin>
+		</plugins>
+	  </build>
+	  
+	  
+	<modules>
+		<module>ibge-protocolo.application</module>
+		<module>ibge-protocolo.configuration</module>
+		<module>ibge-protocolo.development</module>
+	</modules>
+</project>
